@@ -139,7 +139,7 @@ var LANDING_PAGE_KCLID_PARAM_NAME = "kclid";
             date.setTime(date.getTime() + (expiryInMillis));
             var expires = "; expires=" + date.toGMTString();
             var domainStr = "";
-            if (domain)
+            if (domain != null)
             {
                 domainStr = "; domain=" + domain;
             }
