@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+    <meta charset="UTF-8">
+    <title>AMP Linker Page</title>
+    <!--<script async="" custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>-->
+    <!--<script async="" custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>-->
+    <!--<script async="" custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script>-->
+    <!--<script async="" custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>-->
+    <script async="" custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <!--<script async="" custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>-->
+    <!--<script async="" custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>-->
+</head>
+<body>
+<amp-analytics>
+    <script type="application/json">
+       {
+           "enabled": "QUERY_PARAM(gclid) or QUERY_PARAM(linker)",
+           "vars": {
+               "clientId": "CLIENT_ID(ken_ampid)",
+               "channelId": "QUERY_PARAM(gclid)"
+           },
+           "requests": {
+               "pageview": "https://amp.xg4ken.com/amp-event?amp_id=${clientId}&channel_id=${channelId}"
+           },
+           "triggers": {
+               "trackPageview": {
+                   "on": "visible",
+                   "request": "pageview"
+               }
+           },
+           "transport": {
+               "beacon": false,
+               "xhrpost": false,
+               "image": true
+           },
+           "linkers": {
+               "linker" : {
+                   "ids" : {
+                       "clientId": "${clientId}",
+                       "channelId": "${channelId}"
+                   },
+                   "proxyOnly" : false,
+                   "enabled": true
+               }
+           },
+           "cookies": {
+               "enabled": true,
+               "ken_gclid": {
+                   "value": "QUERY_PARAM(gclid)"
+               },
+               "ken_linker_gclid": {
+                   "value": "LINKER_PARAM(linker, channelId)"
+               }
+           }
+       }
+   </script>
+</amp-analytics>
+</body>
+</html>
